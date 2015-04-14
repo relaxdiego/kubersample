@@ -1,0 +1,21 @@
+<html>
+<head></head>
+<body>
+
+<h1>Welcome to the Internet HQ. Please follow me.</h1>
+
+<img src="/images/internet.jpg"/>
+
+<p>Image source <a href="http://sharpwriter.deviantart.com/art/Welcome-to-the-Internet-Please-Follow-me-322248378">http://sharpwriter.deviantart.com/art/Welcome-to-the-Internet-Please-Follow-me-322248378</a></p>
+
+<form action="/sign" method="post">
+    Leave a message: <input type="text" name="message">
+    <input type="submit" value="Submit">
+</form>
+
+<% @messages.each do |msg| %>
+    <br/><%= msg %>
+<% end %>
+
+</body>
+</html>
