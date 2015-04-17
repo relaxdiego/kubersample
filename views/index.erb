@@ -1,21 +1,74 @@
 <html>
-<head></head>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internet HQ</title>
+    <link rel="stylesheet" href="/css/foundation.css">
+    <link rel="stylesheet" href="/css/app.css">
+    <script src="/js/vendor/modernizr.js"></script>
+</head>
+
 <body>
 
-<h1>Welcome to the Internet HQ. Please follow me.</h1>
+    <div class="row">
+      <div class="large-12 columns">
+        <h1>Welcome to the Internet HQ. Please follow me.</h1>
+      </div>
+    </div>
 
-<img src="/images/internet.jpg"/>
+    <div class="row">
+        <div class="large-12 columns">
+            <div class="large-1 columns">&nbsp;</div>
 
-<p>Image source <a href="http://sharpwriter.deviantart.com/art/Welcome-to-the-Internet-Please-Follow-me-322248378">http://sharpwriter.deviantart.com/art/Welcome-to-the-Internet-Please-Follow-me-322248378</a></p>
+            <div class="large-10 columns">
+                <div class="panel">
+                    <img src="/img/internet.jpg"/>
 
-<form action="/sign" method="post">
-    Leave a message: <input type="text" name="message">
-    <input type="submit" value="Submit">
-</form>
+                    <h6>Image source <a href="http://sharpwriter.deviantart.com/art/Welcome-to-the-Internet-Please-Follow-me-322248378">http://sharpwriter.deviantart.com</a></h6>
+                </div>
+            </div>
 
-<% @messages.each do |msg| %>
-    <br/><%= msg %>
-<% end %>
+            <div class="large-1 columns">&nbsp;</div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="large-12 columns">
+            <div class="large-1 columns">&nbsp;</div>
+
+            <div class="large-10 columns">
+                <div class="panel">
+
+                    <form action="/sign" method="post">
+                        <h4>Leave a message!</h4>
+                        <input type="text" name="message">
+                        <input type="submit" value="Yes, sir!">
+                    </form>
+                    <br/>
+                    <table width="100%">
+                        <thead>
+                            <tr><th>Previous Messages</th></tr>
+                        </thead>
+                        <tbody>
+                            <% @messages.each do |msg| %>
+                                <tr><td><%= msg %></td></tr>
+                            <% end %>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+            <div class="large-1 columns">&nbsp;</div>
+        </div>
+    </div>
+
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/foundation.min.js"></script>
+    <script>
+        $(document).foundation();
+    </script>
 
 </body>
 </html>
