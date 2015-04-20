@@ -1,0 +1,39 @@
+kind: ReplicationController
+
+apiVersion: v1beta3
+
+metadata:
+  name: frontend-v1
+
+  labels:
+    name: frontend
+    group: kubersample
+
+spec:
+  replicas: 4
+
+  selector:
+    name: frontend
+    version: v1
+    group: kubersample
+
+  template:
+    metadata:
+      labels:
+        name: frontend
+        version: v1
+        group: kubersample
+
+    spec:
+      containers:
+      - name: kubersample
+
+        image: relaxdiego/kubersample:v1
+
+        command:
+        - /usr/local/bin/ruby
+        - /usr/share/kubersample/app.rb
+
+        ports:
+        - containerPort: 4567
+          protocol: TCP

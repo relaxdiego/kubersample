@@ -1,0 +1,31 @@
+kind: ReplicationController
+
+apiVersion: v1beta3
+
+metadata:
+  name: redis-master
+
+  labels:
+    name: redis-master
+    group: kubersample
+
+spec:
+  replicas: 1
+
+  selector:
+    name: redis-master
+    group: kubersample
+
+  template:
+    metadata:
+      labels:
+        name: redis-master
+        group: kubersample
+
+    spec:
+      containers:
+      - name: master
+        image: redis
+        ports:
+        - containerPort: 6379
+          protocol: TCP
