@@ -9,8 +9,8 @@ def redis_client
     }
 
     if ENV['REDIS_MASTER_SERVICE_HOST']
-        opts[:host] = ENV['REDIS_MASTER_SERVICE_HOST']
-        opts[:port] = ENV['REDIS_MASTER_SERVICE_PORT']
+        opts[:host] = redis.hq.kubernetes.local
+        opts[:port] = 6379
     end
 
     Redis.new(opts)
