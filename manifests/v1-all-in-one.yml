@@ -1,0 +1,126 @@
+kind: List
+
+apiVersion: v1beta3
+
+items:
+
+  - kind: ReplicationController
+
+    apiVersion: v1beta3
+
+    metadata:
+      name: redis-master
+
+      labels:
+        name: redis-master
+        group: kubersample
+
+    spec:
+      replicas: 1
+
+      selector:
+        name: redis-master
+        group: kubersample
+
+      template:
+        metadata:
+          labels:
+            name: redis-master
+            group: kubersample
+
+        spec:
+          containers:
+          - name: master
+            image: redis
+            ports:
+            - containerPort: 6379
+              protocol: TCP
+
+
+  - kind: Service
+
+    apiVersion: v1beta3
+
+    metadata:
+      name: redis-master
+
+      labels:
+        name: redis-master
+        group: kubersample
+
+    spec:
+      ports:
+      - port: 6379
+        targetPort: 6379
+        protocol: TCP
+
+      selector:
+        name: redis-master
+        group: kubersample
+
+
+  - kind: ReplicationController
+
+    apiVersion: v1beta3
+
+    metadata:
+      name: frontend-v1
+
+      labels:
+        name: frontend
+        group: kubersample
+
+    spec:
+      replicas: 2
+
+      selector:
+        name: frontend
+        version: v1
+        group: kubersample
+
+      template:
+        metadata:
+          labels:
+            name: frontend
+            version: v1
+            group: kubersample
+
+        spec:
+          containers:
+          - name: kubersample
+
+            image: relaxdiego/kubersample:v1
+
+            command:
+            - /usr/local/bin/ruby
+            - /usr/share/kubersample/app.rb
+
+            ports:
+            - containerPort: 4567
+              name: app
+              protocol: TCP
+
+  - kind: Service
+
+    apiVersion: v1beta3
+
+    metadata:
+      name: frontend
+
+      labels:
+        name: frontend
+        group: kubersample
+
+    spec:
+      ports:
+      - port: 8080
+        targetPort: app
+        protocol: TCP
+
+      publicIPs:
+      - 54.148.138.124
+      - 172.20.0.10
+
+      selector:
+        name: frontend
+        group: kubersample

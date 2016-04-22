@@ -36,4 +36,5 @@ spec:
 
         ports:
         - containerPort: 4567
+          name: app
           protocol: TCP

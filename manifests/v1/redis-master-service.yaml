@@ -2,23 +2,22 @@ kind: Service
 
 apiVersion: v1beta3
 
+id: redis
+namespace: hq
+
 metadata:
-  name: frontend
+  name: redis-master
 
   labels:
-    name: frontend
+    name: redis-master
     group: kubersample
 
 spec:
   ports:
-  - port: 8080
-    targetPort: 4567
+  - port: 6379
+    targetPort: 6379
     protocol: TCP
 
-  publicIPs:
-  - 54.187.97.90
-  - 172.20.0.10
-
   selector:
-    name: frontend
+    name: redis-master
     group: kubersample
